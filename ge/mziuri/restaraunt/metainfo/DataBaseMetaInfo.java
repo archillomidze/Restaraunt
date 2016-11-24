@@ -15,6 +15,6 @@ public class DataBaseMetaInfo {
     
     public static final String username = "postgres";
     
-    public static final String passsword = "rame";
+    public static final String password = "rame";
     
 }

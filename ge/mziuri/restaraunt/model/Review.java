@@ -34,6 +34,15 @@ public class Review {
         this.date = date;
     }
 
+    public Review(int id, int food_id, int rating, String comment) {
+        this.id = id;
+        this.food_id = food_id;
+        this.rating = rating;
+        this.comment = comment;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
