@@ -5,10 +5,15 @@
  */
 package ge.mziuri.restaraunt.dao;
 
+import ge.mziuri.restaraunt.model.Menu;
+import java.util.List;
+
 /**
  *
  * @author Archil
  */
-public class MenuDAO {
-    
+public interface MenuDAO {
+    void addMenu(Menu menu);
+    List<Menu> seeAllMenu();
+    void deleteMenu(int menuID);
 }

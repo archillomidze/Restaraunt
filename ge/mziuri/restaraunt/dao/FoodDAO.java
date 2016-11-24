@@ -5,10 +5,18 @@
  */
 package ge.mziuri.restaraunt.dao;
 
+import ge.mziuri.restaraunt.enums.FoodType;
+import ge.mziuri.restaraunt.model.Food;
+import java.util.List;
+
 /**
  *
  * @author Archil
  */
-public class FoodDAO {
+public interface FoodDAO {
+    
+    void addFood(Food food);
+    List<Food> SeeAllFood(FoodType foodType);
+    List<Food> SeeAllDrink(FoodType beverageType);
     
 }
