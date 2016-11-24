@@ -56,23 +56,17 @@ public class ReviewDAOImpl implements ReviewDAO {
     public List<Review> seeTodaysReviews() {
         List<Review> reviews = new ArrayList<>();
         try {
-            pstmt = con.prepareStatement("SELECT * FROM REVIEW WHERE date = (?) ");
+            pstmt = con.prepareStatement("SELECT food.name ,review.comment,review.rating FROM FOOD INNER JOIN review ON food.id = review.food_id WHERE review.date = current_date");
             
-            java.util.Date utilDate = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            pstmt.setDate(1, sqlDate);
-            System.out.println(sqlDate);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-
-                int id = rs.getInt("id");
                 int food_id = rs.getInt("food_id");
                 int rating = rs.getInt("rating");
                 String commnet = rs.getString("comment");
                 Date date = rs.getDate("date");
                 
-                Review review = new Review(id, food_id, rating, commnet,date);
+                Review review = new Review(food_id, rating, commnet,date);
                 reviews.add(review);
                 
             }

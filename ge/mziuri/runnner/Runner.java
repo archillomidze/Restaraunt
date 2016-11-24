@@ -12,8 +12,7 @@ public class Runner {
         Review review = new Review(2, 3, 10, "Very good");
         ReviewDAO review1 = new ReviewDAOImpl();
         
-        
-        List<Review> rev =  review1.seeTodaysReviews();
-        System.out.println(rev);
+        review1.seeTodaysReviews();
+       
     }
 }
