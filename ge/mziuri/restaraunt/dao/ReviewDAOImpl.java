@@ -58,18 +58,16 @@ public class ReviewDAOImpl implements ReviewDAO {
         List<FoodReview> reviews = new ArrayList<>();
         try {
             pstmt = con.prepareStatement("SELECT food.name ,review.comment,review.rating FROM FOOD INNER JOIN review ON food.id = review.food_id WHERE review.date = current_date");
-            
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-               
-              String name = rs.getString("name");
-              String comment = rs.getString("comment");
-              int rating = rs.getInt("rating");
-              FoodReview fr = new FoodReview(name, comment, rating);
-              reviews.add(fr);
-              
-                
+
+                String name = rs.getString("name");
+                String comment = rs.getString("comment");
+                int rating = rs.getInt("rating");
+                FoodReview fr = new FoodReview(name, comment, rating);
+                reviews.add(fr);
+
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -78,8 +76,27 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public List<Review> seeFoodReviews() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<FoodReview> seeFoodReviews(String foodName) {
+        List<FoodReview> reviews = new ArrayList<>();
+        try {
+            pstmt = con.prepareStatement(" SELECT food.name ,review.comment,review.rating FROM FOOD INNER JOIN review ON food.id = review.food_id WHERE food.name = (?)");
+
+            pstmt.setString(1, foodName);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+
+                String name = rs.getString("name");
+                String comment = rs.getString("comment");
+                int rating = rs.getInt("rating");
+                FoodReview fr = new FoodReview(name, comment, rating);
+                reviews.add(fr);
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reviews;
     }
 
 }
