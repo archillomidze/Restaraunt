@@ -6,6 +6,7 @@
 package ge.mziuri.restaraunt.dao;
 
 import ge.mziuri.restaraunt.metainfo.DataBaseMetaInfo;
+import ge.mziuri.restaraunt.model.FoodReview;
 import ge.mziuri.restaraunt.model.Review;
 import java.sql.Connection;
 import java.sql.Date;
@@ -53,21 +54,21 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public List<Review> seeTodaysReviews() {
-        List<Review> reviews = new ArrayList<>();
+    public List<FoodReview> seeTodaysReviews() {
+        List<FoodReview> reviews = new ArrayList<>();
         try {
             pstmt = con.prepareStatement("SELECT food.name ,review.comment,review.rating FROM FOOD INNER JOIN review ON food.id = review.food_id WHERE review.date = current_date");
             
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int food_id = rs.getInt("food_id");
-                int rating = rs.getInt("rating");
-                String commnet = rs.getString("comment");
-                Date date = rs.getDate("date");
-                
-                Review review = new Review(food_id, rating, commnet,date);
-                reviews.add(review);
+               
+              String name = rs.getString("name");
+              String comment = rs.getString("comment");
+              int rating = rs.getInt("rating");
+              FoodReview fr = new FoodReview(name, comment, rating);
+              reviews.add(fr);
+              
                 
             }
         } catch (SQLException ex) {

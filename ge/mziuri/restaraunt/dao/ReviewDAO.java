@@ -5,6 +5,7 @@
  */
 package ge.mziuri.restaraunt.dao;
 
+import ge.mziuri.restaraunt.model.FoodReview;
 import ge.mziuri.restaraunt.model.Review;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface ReviewDAO {
     
     public void addReview(Review review);    
     
-    public List<Review> seeTodaysReviews();
+    public List<FoodReview> seeTodaysReviews();
     
     public List<Review> seeFoodReviews();
     

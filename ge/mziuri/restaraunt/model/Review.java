@@ -40,6 +40,14 @@ public class Review {
         this.rating = rating;
         this.comment = comment;
     }
+
+    public Review(int food_id, int rating, String comment, Date date) {
+        this.food_id = food_id;
+        this.rating = rating;
+        this.comment = comment;
+        this.date = date;
+    }
+    
     
     
 
