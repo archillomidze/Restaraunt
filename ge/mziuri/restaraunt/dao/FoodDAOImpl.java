@@ -41,7 +41,7 @@ public class FoodDAOImpl implements FoodDAO{
             pstmt = con.prepareStatement("INSERT INTO food (id,  name, type, price) VALUES (?,?,?,?);");
             pstmt.setInt(1, food.getId());
             pstmt.setString(2, food.getName());
-            pstmt.setString(3, food.getFoodType().toString());
+            pstmt.setString(3, food.getFoodType().name());
             pstmt.setDouble(4, food.getPrice());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -50,18 +50,18 @@ public class FoodDAOImpl implements FoodDAO{
     }
 
     @Override
-    public List<Food> SeeAllFood(FoodType foodType) {
+    public List<Food> getAllFood() {
         List<Food> foods = new ArrayList<>();
         try {
             pstmt = con.prepareStatement("SELECT * FROM food WHERE type = ?");
+            pstmt.setString(1, FoodType.Food.name());
             ResultSet rs = pstmt.executeQuery();
-            pstmt.setString(1, foodType.toString());
             while (rs.next()) {
                 int ID = rs.getInt("id");
                 String Name = rs.getString("name");
                 Double Price = rs.getDouble("price");
-                int Rating = rs.getInt("rating");
-                Food food = new Food(ID, Name, foodType, Price, Rating);
+                int Rating = rs.getInt("rating_sum");
+                Food food = new Food(ID, Name, FoodType.Food, Price, Rating);
                 foods.add(food);
             } 
         } catch (SQLException ex) {
@@ -71,18 +71,19 @@ public class FoodDAOImpl implements FoodDAO{
     }
 
     @Override
-    public List<Food> SeeAllDrink(FoodType beverageType) {
+    public List<Food> getAllDrink() {
         List<Food> beverages = new ArrayList<>();
         try {
             pstmt = con.prepareStatement("SELECT * FROM food WHERE type = ?");
+            System.out.println(FoodType.Beverage.name());
+            pstmt.setString(1, FoodType.Beverage.name());
             ResultSet rs = pstmt.executeQuery();
-            pstmt.setString(1, beverageType.toString());
             while (rs.next()) {
                 int ID = rs.getInt("id");
                 String Name = rs.getString("name");
                 Double Price = rs.getDouble("price");
-                int Rating = rs.getInt("rating");
-                Food Beverage = new Food(ID, Name, beverageType, Price, Rating);
+                int Rating = rs.getInt("rating_sum");
+                Food Beverage = new Food(ID, Name, FoodType.Beverage, Price, Rating);
                 beverages.add(Beverage);
             } 
         } catch (SQLException ex) {

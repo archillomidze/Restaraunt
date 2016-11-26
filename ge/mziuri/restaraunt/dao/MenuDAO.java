@@ -5,6 +5,7 @@
  */
 package ge.mziuri.restaraunt.dao;
 
+import ge.mziuri.restaraunt.model.Food;
 import ge.mziuri.restaraunt.model.Menu;
 import java.util.List;
 
@@ -15,5 +16,5 @@ import java.util.List;
 public interface MenuDAO {
     void addMenu(Menu menu);
     List<Menu> seeAllMenu();
-    void deleteMenu(int menuID);
+    List<Food> seeFoodsByMenuID(int menuID);
 }
