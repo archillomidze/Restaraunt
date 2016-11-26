@@ -17,8 +17,8 @@ public interface ReviewDAO {
     
     public void addReview(Review review);    
     
-    public List<FoodReview> seeTodaysReviews();
+    public List<FoodReview> getTodaysReviews();
     
-    public List<FoodReview> seeFoodReviews(String foodName);
+    public List<FoodReview> getFoodReviews(String foodName);
     
 }
