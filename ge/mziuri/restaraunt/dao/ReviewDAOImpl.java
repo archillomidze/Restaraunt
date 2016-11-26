@@ -46,7 +46,11 @@ public class ReviewDAOImpl implements ReviewDAO {
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             pstmt.setDate(5, sqlDate);
             pstmt.executeUpdate();
-
+            
+            pstmt = con.prepareStatement("UPDATE food SET rating = rating + ? WHERE food_id = ?");
+            pstmt.setInt(1, review.getRating());
+            pstmt.setInt(2, review.getFood_id());
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -54,7 +58,7 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public List<FoodReview> seeTodaysReviews() {
+    public List<FoodReview> getTodaysReviews() {
         List<FoodReview> reviews = new ArrayList<>();
         try {
             pstmt = con.prepareStatement("SELECT food.name ,review.comment,review.rating FROM FOOD INNER JOIN review ON food.id = review.food_id WHERE review.date = current_date");
@@ -76,7 +80,7 @@ public class ReviewDAOImpl implements ReviewDAO {
     }
 
     @Override
-    public List<FoodReview> seeFoodReviews(String foodName) {
+    public List<FoodReview> getFoodReviews(String foodName) {
         List<FoodReview> reviews = new ArrayList<>();
         try {
             pstmt = con.prepareStatement(" SELECT food.name ,review.comment,review.rating FROM FOOD INNER JOIN review ON food.id = review.food_id WHERE food.name = (?)");
