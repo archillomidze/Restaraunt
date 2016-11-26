@@ -32,6 +32,12 @@ CREATE TABLE review(
 CREATE TABLE menu(
     id INT PRIMARY KEY NOT NULL,
     sale REAL
-);*/
+);
+    
+    CREATE TABLE menu_food(
+    menu_id INT REFERENCES MENU(id),
+    food_id INT REFERENCES FOOD(id)
+    );
+    */
     
 }

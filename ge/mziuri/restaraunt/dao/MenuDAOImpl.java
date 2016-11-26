@@ -39,9 +39,17 @@ public class MenuDAOImpl implements MenuDAO{
     @Override
     public void addMenu(Menu menu) {
         try{
-            pstmt = con.prepareStatement("INSERT INTO menu(id, sale)");
+            pstmt = con.prepareStatement("INSERT INTO menu(id, sale) VALUES (?,?)");
             pstmt.setInt(1, menu.getId());
             pstmt.setDouble(2, menu.getSale());
+            pstmt.executeUpdate();
+            
+            for (Food food : menu.getFoodList()) {
+                pstmt = con.prepareStatement("INSERT INTO menu_food VALUES (?,?)");
+                pstmt.setInt(1, menu.getId());
+                pstmt.setInt(2, food.getId());
+                pstmt.executeUpdate();
+            }
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }

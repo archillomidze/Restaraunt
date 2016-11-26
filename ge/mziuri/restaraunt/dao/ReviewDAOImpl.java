@@ -47,9 +47,10 @@ public class ReviewDAOImpl implements ReviewDAO {
             pstmt.setDate(5, sqlDate);
             pstmt.executeUpdate();
             
-            pstmt = con.prepareStatement("UPDATE food SET rating = rating + ? WHERE food_id = ?");
-            pstmt.setInt(1, review.getRating());
-            pstmt.setInt(2, review.getFood_id());
+            pstmt = con.prepareStatement("UPDATE food SET rating_sum = rating_sum + " + review.getRating() + " WHERE id = ?");
+            pstmt.setInt(1, review.getFood_id());
+            System.out.println(review.getRating());
+            System.out.println(review.getFood_id());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
