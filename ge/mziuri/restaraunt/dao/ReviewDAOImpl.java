@@ -45,7 +45,7 @@ public class ReviewDAOImpl implements ReviewDAO {
             java.util.Date utilDate = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             pstmt.setDate(5, sqlDate);
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
