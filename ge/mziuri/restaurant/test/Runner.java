@@ -32,12 +32,12 @@ public class Runner {
         ReviewDAO reviewDAO = new ReviewDAOImpl();
         MenuDAO menuDAO = new MenuDAOImpl();
         
-        Food food1 = new Food(1, "becon", FoodType.Food, 5, 0);
-        Food food2= new Food(2, "eggs", FoodType.Food, 3, 0);
-        Food food3 = new Food(3, "wine", FoodType.Beverage, 40, 0);
-        Food food4 = new Food(4, "bread", FoodType.Food, 3.5, 0);
-        Food food5 = new Food(5, "button", FoodType.Food, 2, 0);
-        Food food6 = new Food(6, "tes", FoodType.Beverage, 5, 0);
+//        Food food1 = new Food(1, "becon", FoodType.Food, 5, 0);
+//        Food food2= new Food(2, "eggs", FoodType.Food, 3, 0);
+//        Food food3 = new Food(3, "wine", FoodType.Beverage, 40, 0);
+//        Food food4 = new Food(4, "bread", FoodType.Food, 3.5, 0);
+//        Food food5 = new Food(5, "button", FoodType.Food, 2, 0);
+//        Food food6 = new Food(6, "tes", FoodType.Beverage, 5, 0);
 //        
 //        foodDAO.addFood(food1);
 //        foodDAO.addFood(food2);
@@ -48,7 +48,7 @@ public class Runner {
 //        
 //        System.out.println(foodDAO.getAllDrink());
 //        System.out.println(foodDAO.getAllFood());
-        
+//        
 //        Review review1 = new Review(7, 1, 10, "best");
 //        Review review2 = new Review(8, 1, 8, "best");
 //        Review review3 = new Review(9, 2, 9, "best");
@@ -56,13 +56,17 @@ public class Runner {
 //        reviewDAO.addReview(review1);
 //        reviewDAO.addReview(review2);
 //        reviewDAO.addReview(review3);
-
+//
 //        List<FoodReview> r = reviewDAO.getFoodReviews("becon");
 //        System.out.println(r);
-        
-        
-        Menu menu1 = new Menu(1, new ArrayList<Food>(Arrays.asList(food1, food2)), 50);
-        menuDAO.addMenu(menu1);
+//        
+//        
+//        Menu menu1 = new Menu(1, new ArrayList<Food>(Arrays.asList(food1, food2)), 50);
+//        menuDAO.addMenu(menu1);
+//        Menu menu2 = new Menu(2, new ArrayList<Food>(Arrays.asList(food3, food4)), 70);
+//        menuDAO.addMenu(menu2);
+
+        System.out.println(menuDAO.seeFoodsByMenuID(1));
         
     }
     

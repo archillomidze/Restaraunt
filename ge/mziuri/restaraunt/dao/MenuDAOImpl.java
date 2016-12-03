@@ -77,15 +77,15 @@ public class MenuDAOImpl implements MenuDAO{
     public List<Food> seeFoodsByMenuID(int menuID) {
         List<Food> foods = new ArrayList<>();
         try {
-            pstmt = con.prepareStatement("SELECT * FROM food WHERE menuID = ?");
+            pstmt = con.prepareStatement("SELECT * FROM food WHERE id IN (SELECT food_id FROM menu_food WHERE menu_id = ?)");
             pstmt.setInt(1, menuID);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int ID = rs.getInt("id");
                 String Name = rs.getString("name");
-                FoodType foodType = FoodType.valueOf(rs.getString("foodType"));
+                FoodType foodType = FoodType.valueOf(rs.getString("type"));
                 Double Price = rs.getDouble("price");
-                int Rating = rs.getInt("rating");
+                int Rating = rs.getInt("rating_sum");
                 Food food = new Food(ID, Name, foodType, Price, Rating);
                 foods.add(food);
             } 
